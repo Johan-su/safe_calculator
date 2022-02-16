@@ -1,29 +1,23 @@
 use std::io;
 use std::io::Write;
+use std::process;
 
 fn main()
 {
-    let stdin  = io::stdin();
-
-
-
-    let operator: char = choose_operator(&stdin);
-
-
-
-    let num1 = choose_num_f(&stdin, "first num: ");
-    let num2 = choose_num_f(&stdin, "second num: ");
-
-    eval_print(&num1, &num2, operator);
-
-
-
-
-
-
-
-
+    loop
+    {
+        let mut stdin: std::io::Stdin = io::stdin();
     
+        let operator: char = choose_operator(&mut stdin);
+    
+    
+    
+        let num1 = choose_num_f(&stdin, "first num: ");
+        let num2 = choose_num_f(&stdin, "second num: ");
+    
+        eval_print(&num1, &num2, operator);
+
+    }
 }
 
 fn flush_print(s: &str)
@@ -33,30 +27,28 @@ fn flush_print(s: &str)
 }
 
 
-fn choose_operator(stdin: &std::io::Stdin) -> char
+fn choose_operator(stdin: &mut std::io::Stdin) -> char
 {
-
-    
-
     let mut s_operator = String::new();
     let mut operator: char;
     loop
     {
         loop
         {
-            flush_print("operator [+-*/]?: ");
-            let line = stdin.read_line(&mut s_operator); // TODO(johan) fix
+            flush_print("q to Quit, or choose operator [+-*/]: ");
+            s_operator.clear();
+
+
+            let line = stdin.read_line(&mut s_operator);
             if(!line.is_err())
             {
-                s_operator = line.unwrap().to_string();
                 break;
             }
             else
             {
-                panic!("failed to read value from cli");
+                panic!("failed to read value from stdin");
             }
         }
-
         operator = s_operator.chars().nth(0).unwrap();
         match operator
         {
@@ -64,6 +56,7 @@ fn choose_operator(stdin: &std::io::Stdin) -> char
             '-' => break,
             '*' => break,
             '/' => break,
+            'q' => std::process::exit(0),
             _   => println!("incorrect operator"),
         };
 
