@@ -87,7 +87,7 @@ fn choose_num_f(stdin: &std::io::Stdin, prompt_string: &str) -> f32
         }
         else
         {
-            println!("failed to parse as float");
+            println!("Failed to parse as float");
         }
     }
 
