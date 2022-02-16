@@ -11,8 +11,8 @@ fn main()
     
     
     
-        let num1 = choose_num_f(&stdin, "first num: ");
-        let num2 = choose_num_f(&stdin, "second num: ");
+        let num1 = choose_num_f(&stdin, "First num: ");
+        let num2 = choose_num_f(&stdin, "Second num: ");
     
         eval_print(&num1, &num2, operator);
 
@@ -34,7 +34,7 @@ fn choose_operator(stdin: &mut std::io::Stdin) -> char
     {
         loop
         {
-            flush_print("q to Quit, or choose operator [+-*/]: ");
+            flush_print("'Q' to Quit, or choose operator [+-*/]: ");
             s_operator.clear();
 
 
@@ -45,7 +45,7 @@ fn choose_operator(stdin: &mut std::io::Stdin) -> char
             }
             else
             {
-                panic!("failed to read value from stdin");
+                panic!("Failed to read value from stdin.");
             }
         }
         operator = s_operator.chars().nth(0).unwrap();
@@ -56,7 +56,7 @@ fn choose_operator(stdin: &mut std::io::Stdin) -> char
             '*' => break,
             '/' => break,
             'q' => std::process::exit(0),
-            _   => println!("incorrect operator"),
+            _   => println!("Incorrect operator."),
         };
 
     }
@@ -76,7 +76,7 @@ fn choose_num_f(stdin: &std::io::Stdin, prompt_string: &str) -> f32
         match stdin.read_line(&mut s)
         {
             Ok(_) => (),
-            Err(_) => panic!("failed to read value from cli"),
+            Err(_) => panic!("Failed to read value from cli"),
         }
         
 
