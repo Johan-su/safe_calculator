@@ -1,6 +1,5 @@
 use std::io;
 use std::io::Write;
-use std::process;
 
 fn main()
 {
@@ -106,7 +105,7 @@ fn eval_print(num1: &f32, num2: &f32, operator: char)
         '-' => result = num1 - num2,
         '*' => result = num1 * num2,
         '/' => result = num1 / num2,
-        _   => panic!("failed evalutation of numbers"),
+        _   => panic!("Incorrect operator in eval"),
 
     }
 
